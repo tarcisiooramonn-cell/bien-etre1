@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400;62..125,500;62..125,600;62..125,800&display=swap" rel="stylesheet">
 <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
 
-<!-- ID DO VISITANTE (external_id) — o mesmo ID segue para a VSL pelo parâmetro ?vid= -->
+<!-- ID DO VISITANTE (external_id) — o mesmo ID segue para a VSL pelo parâmetro ?vid= (inalterado) -->
 <script>
   (function(){
     var vid = new URLSearchParams(window.location.search).get('vid');
@@ -25,7 +25,7 @@
   })();
 </script>
 
-<!-- META PIXEL (mesmo pixel da VSL) -->
+<!-- META PIXEL (mesmo pixel da VSL — ED - Francês) (inalterado) -->
 <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments);};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init','1265945678977349',{ external_id: window.PM_VID });
@@ -37,7 +37,7 @@
      CONFIGURAÇÃO — mexa só aqui
      ============================================================ */
   :root{
-    --url-continuar: "https://geleedecheval.vercel.app/";  /* botão "Oui" */
+    --url-continuar: "https://geleedecheval.vercel.app/";  /* botão "Oui" (VSL) */
   }
   /* TELA_DESPEDIDA (no script, lá embaixo):
      true  -> agradecimento dentro da página (recomendado p/ Meta)
@@ -47,7 +47,6 @@
   *{box-sizing:border-box;margin:0;padding:0}
   :root{
     --nuit:#0f1b2d;        /* fundo azul-noite */
-    --nuit-2:#16253b;      /* superfície das opções */
     --trait:#2a3b55;       /* bordas */
     --os:#efe9df;          /* texto principal (osso) */
     --brume:#9aa6b8;       /* texto secundário */
@@ -75,55 +74,13 @@
     flex:1;display:flex;flex-direction:column;
   }
 
-  /* progresso: é uma sequência real, então leva contagem */
-  .progres{display:flex;align-items:center;gap:12px}
-  .progres[hidden]{display:none}
-  .barre{flex:1;display:flex;gap:5px}
-  .barre span{flex:1;height:4px;border-radius:2px;background:var(--trait);transition:background .3s}
-  .barre span.on{background:var(--lampe)}
-  .compte{font-size:13px;color:var(--brume);font-variant-numeric:tabular-nums;white-space:nowrap}
+  /* palco central */
+  .scene{flex:1;display:flex;flex-direction:column;justify-content:center;padding:24px 0 8px;text-align:center}
 
-  /* palco central: tudo o que o lead toca fica no meio da tela */
-  .scene{flex:1;display:flex;flex-direction:column;justify-content:center;padding:24px 0 8px}
-
-  /* frase de impacto: só na primeira tela */
-  .accroche{text-align:center;margin-bottom:30px}
-  .accroche[hidden]{display:none}
-  .accroche h1{
+  .scene h1{
     font-variation-settings:"wdth" 68;font-weight:800;
     font-size:clamp(36px,11vw,52px);line-height:.95;letter-spacing:-.005em;color:var(--os);
-  }
-  .accroche p{margin:12px auto 0;font-size:15px;color:var(--brume);max-width:30ch}
-
-  .etape{display:flex;flex-direction:column}
-  .etape[hidden]{display:none}
-
-  .q{
-    font-variation-settings:"wdth" 78;font-weight:600;text-align:center;
-    font-size:clamp(23px,6.6vw,29px);line-height:1.14;color:var(--os);margin:0 auto 22px;max-width:22ch;
-  }
-
-  .choix{display:flex;flex-direction:column;gap:10px}
-  .choix button{
-    -webkit-tap-highlight-color:transparent;width:100%;text-align:left;cursor:pointer;
-    background:var(--nuit-2);border:1px solid var(--trait);border-radius:10px;
-    padding:16px 16px;color:var(--os);font-family:inherit;font-size:16px;font-weight:500;line-height:1.35;
-    display:flex;align-items:center;gap:14px;transition:border-color .15s,background .15s;
-  }
-  .choix button:hover{border-color:var(--brume)}
-  .choix button:focus-visible{outline:2px solid var(--lampe);outline-offset:2px}
-  .rond{width:20px;height:20px;flex:none;border-radius:50%;border:2px solid var(--brume);position:relative;transition:border-color .15s}
-  .rond::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--lampe);transform:scale(0);transition:transform .18s cubic-bezier(.3,1.6,.5,1)}
-  /* confirmação do toque antes de avançar */
-  .choix button.pris{border-color:var(--lampe);background:#1d2d44}
-  .choix button.pris .rond{border-color:var(--lampe)}
-  .choix button.pris .rond::after{transform:scale(1)}
-
-  /* resultado */
-  .result{text-align:center}
-  .result h2{
-    font-variation-settings:"wdth" 70;font-weight:800;
-    font-size:clamp(32px,9.5vw,44px);line-height:.98;color:var(--os);margin-bottom:18px;
+    margin-bottom:18px;
   }
   .intro{font-size:16px;color:#c9cfd9;margin:0 auto 28px;max-width:36ch}
 
@@ -144,11 +101,11 @@
   .mentions{padding-top:18px;font-size:11.5px;color:#6f7b8e;line-height:1.55;text-align:center}
 
   @media (prefers-reduced-motion:no-preference){
-    /* um único momento de movimento: a pergunta entra ao trocar de tela */
-    .etape:not([hidden]) .q,.etape:not([hidden]) .choix{animation:entre .32s cubic-bezier(.2,.7,.2,1) both}
-    .etape:not([hidden]) .choix{animation-delay:.05s}
+    .scene h1,.scene .intro,.scene .actions{animation:entre .4s cubic-bezier(.2,.7,.2,1) both}
+    .scene .intro{animation-delay:.06s}
+    .scene .actions{animation-delay:.12s}
     @keyframes entre{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-    /* o botão de resultado brilha 3 vezes e para */
+    /* o botão principal brilha 3 vezes e para */
     .btn-oui{animation:lueur 1.8s ease-in-out .6s 3}
     @keyframes lueur{50%{box-shadow:0 12px 34px -14px rgba(232,162,74,.75),0 0 0 10px rgba(232,162,74,0),0 0 26px 2px rgba(232,162,74,.45)}}
   }
@@ -157,68 +114,21 @@
 <body>
   <div class="wrap">
 
-    <div class="progres" id="progres" aria-hidden="true">
-      <div class="barre" id="barre"><span class="on"></span><span></span><span></span></div>
-      <span class="compte" id="compte">1 sur 3</span>
-    </div>
-
     <main class="scene">
-
-    <header class="accroche" id="accroche">
       <h1>Ce dont vous ne parlez à personne.</h1>
-      <p>Trois questions anonymes. Vingt secondes. Personne ne verra vos réponses.</p>
-    </header>
-
-    <!-- Q1 -->
-    <section class="etape" id="e-q1" aria-label="Question 1 sur 3">
-      <p class="q">Depuis la quarantaine, votre corps ne répond plus tout à fait comme avant ?</p>
-      <div class="choix">
-        <button type="button"><span class="rond"></span>Oui, et honnêtement, ça me travaille</button>
-        <button type="button"><span class="rond"></span>Parfois… ça dépend des jours</button>
-        <button type="button"><span class="rond"></span>Pas vraiment, mais je veux garder le niveau</button>
-      </div>
-    </section>
-
-    <!-- Q2 -->
-    <section class="etape" id="e-q2" aria-label="Question 2 sur 3" hidden>
-      <p class="q">Qu'avez-vous déjà essayé pour retrouver votre vigueur ?</p>
-      <div class="choix">
-        <button type="button"><span class="rond"></span>Rien encore, je ne savais pas par où commencer</button>
-        <button type="button"><span class="rond"></span>Des compléments ou des astuces trouvés sur internet</button>
-        <button type="button"><span class="rond"></span>Des solutions «&nbsp;de dernière minute&nbsp;»… qui ne règlent rien</button>
-        <button type="button"><span class="rond"></span>Autre chose, sans vrai résultat</button>
-      </div>
-    </section>
-
-    <!-- Q3 -->
-    <section class="etape" id="e-q3" aria-label="Question 3 sur 3" hidden>
-      <p class="q">Au fond, ce que vous voulez vraiment, c'est…</p>
-      <div class="choix">
-        <button type="button"><span class="rond"></span>Être de nouveau sûr de moi, sans y penser</button>
-        <button type="button"><span class="rond"></span>Tenir la distance, comme à 30 ans</button>
-        <button type="button"><span class="rond"></span>Qu'elle me regarde à nouveau comme avant</button>
-        <button type="button"><span class="rond"></span>Un peu de tout ça</button>
-      </div>
-    </section>
-
-    <!-- RESULTADO -->
-    <section class="etape result" id="e-fin" hidden>
-      <h2>D'après vos réponses, cette présentation est faite pour vous.</h2>
       <p class="intro">
-        Elle montre ce que des hommes de plus de 40 ans ont changé au quotidien pour
-        retrouver leur vigueur, sans dépendre de solutions de dernière minute.
-        À regarder à votre rythme, en toute discrétion.
+        Une courte présentation sur ce que des hommes de plus de 40 ans ont changé
+        au quotidien pour retrouver leur vigueur, sans dépendre de solutions de
+        dernière minute. À regarder à votre rythme, en toute discrétion.
       </p>
       <div class="actions">
         <a class="btn btn-oui" id="oui" href="https://geleedecheval.vercel.app/">Oui, voir la présentation</a>
         <button class="btn btn-non" id="non" type="button">Non, merci</button>
       </div>
-    </section>
-
     </main>
 
     <p class="mentions">
-      Contenu informatif sur le bien-être, aucun avis médical.
+      Contenu informatif sur le bien-être, réservé aux adultes, aucun avis médical.
       Ne remplace pas l'avis d'un professionnel de santé.
     </p>
 
@@ -229,41 +139,12 @@
   var TELA_DESPEDIDA = true;
   var URL_RECUSA = "/404";
 
-  var ordre = ['e-q1','e-q2','e-q3','e-fin'];
-  var i = 0;
-  var progres = document.getElementById('progres');
-  var segs = document.querySelectorAll('#barre span');
-  var compte = document.getElementById('compte');
-  var accroche = document.getElementById('accroche');
-  var occupe = false;
-
-  function montrer(n){
-    document.getElementById(ordre[i]).hidden = true;
-    i = n;
-    var id = ordre[i];
-    document.getElementById(id).hidden = false;
-    accroche.hidden = (i !== 0);
-    var estQ = (id !== 'e-fin');
-    progres.hidden = !estQ;
-    if(estQ){
-      segs.forEach(function(s,k){ s.classList.toggle('on', k <= i); });
-      compte.textContent = (i+1) + ' sur 3';
-    }
-    window.scrollTo({top:0,behavior:'smooth'});
+  /* Evento personalizado no pixel, sem quebrar a página se o pixel não carregar. */
+  function trackStep(name){
+    try{ if(window.fbq) fbq('trackCustom', name); }catch(e){}
   }
 
-  document.querySelectorAll('.choix').forEach(function(bloc){
-    bloc.querySelectorAll('button').forEach(function(b){
-      b.addEventListener('click', function(){
-        if(occupe) return;
-        occupe = true;
-        b.classList.add('pris');                 /* mostra a escolha marcada */
-        setTimeout(function(){ montrer(i+1); occupe = false; }, 260);
-      });
-    });
-  });
-
-  /* Repassa UTMs, fbclid e demais parâmetros da URL para a próxima página */
+  /* Repassa UTMs, fbclid e demais parâmetros da URL para a próxima página (inalterado) */
   function comParametros(url){
     if(!url) return url;
     try{
@@ -279,14 +160,19 @@
   var oui = document.getElementById('oui');
   oui.setAttribute('href', comParametros(URL_CONTINUAR) || '#');
   oui.addEventListener('click', function(e){
-    if(!URL_CONTINUAR){ e.preventDefault(); return; }
-    oui.setAttribute('href', comParametros(oui.href || URL_CONTINUAR));
+    e.preventDefault();
+    if(!URL_CONTINUAR) return;
+    var destino = comParametros(URL_CONTINUAR);
+    trackStep('Pre_VerApresentacao');
+    /* pequena espera para o evento sair antes do redirecionamento */
+    setTimeout(function(){ window.location.href = destino; }, 300);
   });
 
   document.getElementById('non').addEventListener('click', function(){
+    trackStep('Pre_Recusou');
     if(TELA_DESPEDIDA){
       document.querySelector('.wrap').innerHTML =
-        '<div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:40px 0">'
+        '<div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:40px 0;text-align:center">'
         +'<h2 style="font-variation-settings:\'wdth\' 70;font-weight:800;font-size:40px;line-height:1;margin-bottom:14px">Comme vous voulez.</h2>'
         +'<p class="intro">Merci de votre visite. Prenez soin de vous, et revenez quand le moment sera venu.</p>'
         +'</div>';
